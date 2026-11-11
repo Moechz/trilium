@@ -1,0 +1,98 @@
+{
+  "app_id": "triliumdocker",
+  "title": "Trilium",
+  "image": "triliumnext/trilium:v0.103.0",
+  "repo_name": "trilium",
+  "mode": "wrapper",
+  "container_port": 8080,
+  "category": [
+    "Utilities"
+  ],
+  "volumes": [
+    {
+      "host": "/Volume1/DockerAppData/triliumdocker/data",
+      "container": "/data"
+    }
+  ],
+  "env": {
+    "TZ": "Asia/Shanghai"
+  },
+  "auth": "TriliumNext",
+  "upstream_url": "https://github.com/TriliumNext/Trilium",
+  "upstream_license": "AGPL-3.0",
+  "descript": "Build your personal knowledge base with Trilium Notes. Packaged for TerraMaster TOS 7: the official Docker Hub image runs as a container on your NAS, keeps its data in the application data folder (so it survives restarts and updates), and is opened from its desktop icon.",
+  "release_note": "1. First release.",
+  "important": "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/triliumdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN.",
+  "probe": {
+    "user_in_image": "(root)",
+    "entrypoint": [
+      "docker-entrypoint.sh"
+    ],
+    "cmd": [
+      "sh",
+      "./start-docker.sh"
+    ],
+    "exposed_ports": [
+      8080
+    ],
+    "declared_volumes": [],
+    "image_healthcheck": [
+      "CMD-SHELL",
+      "exec su-exec node node /usr/src/app/docker_healthcheck.cjs"
+    ],
+    "digest": "triliumnext/trilium@sha256:8e6bc939a6d5dbeed42d1b5b155bc790b1c28ca3ac414382d04d626903c62081",
+    "architecture": "x86_64",
+    "platforms": [],
+    "http_client_in_image": "wget",
+    "trial_run": {
+      "ok": false,
+      "http_code": "",
+      "state": "exited",
+      "paths": [],
+      "host_port": 18000,
+      "log_tail": "No USER_UID specified, leaving 1000\nNo USER_GID specified, leaving 1000\nsu: must be suid to work properly",
+      "files_in_mounts": ""
+    },
+    "docker_hub": {},
+    "github": {
+      "owner": "TriliumNext",
+      "repo": "Trilium",
+      "description": "Build your personal knowledge base with Trilium Notes",
+      "license": "AGPL-3.0",
+      "homepage": "https://triliumnotes.org"
+    }
+  },
+  "healthcheck": [
+    "CMD-SHELL",
+    "wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1"
+  ],
+  "entrypoint_file": "src/entrypoint.sh",
+  "platform": "x86_64",
+  "user": "1000:1000",
+  "publisher": "Moechz",
+  "compose_project": "triliumdocker",
+  "github_repo": "trilium",
+  "upstream_version": "0.103.0",
+  "release_tag_prefix": "v",
+  "version": "0.103.0-1",
+  "help": "https://github.com/Moechz/trilium/issues",
+  "official": "https://github.com/TriliumNext/Trilium",
+  "license": "AGPL-3.0",
+  "docker_socket": false,
+  "group_add": [],
+  "platforms": [
+    "x86_64",
+    "aarch64"
+  ],
+  "translations": {
+    "zh-cn": {
+      "descript": "层级化知识库与笔记，支持富文本、代码块和关系图。",
+      "important": "首次使用请打开网页完成初始化。数据保存在 DockerAppData/triliumdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+    },
+    "zh-hk": {
+      "descript": "层级化知识库与笔记，支持富文本、代码块和关系图。",
+      "important": "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/triliumdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+    }
+  },
+  "host_port": 8044
+}
