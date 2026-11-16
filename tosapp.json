@@ -74,7 +74,7 @@
   "github_repo": "trilium",
   "upstream_version": "0.103.0",
   "release_tag_prefix": "v",
-  "version": "0.103.0-1",
+  "version": "0.103.0-2",
   "help": "https://github.com/Moechz/trilium/issues",
   "official": "https://github.com/TriliumNext/Trilium",
   "license": "AGPL-3.0",
